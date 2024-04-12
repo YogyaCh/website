@@ -1,0 +1,283 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Linear Regression</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="single is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Home</a></h1>
+			<nav class="links">
+				<ul>
+					<li><a href="../single.html">Blog</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="#">Projects</a></li>
+				</ul>
+			</nav>
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="#">
+							<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2><a href="#">Linear Regression</a></h2>
+						<p>Lecture 1 of Machine Learning Series</p>
+					</div>
+					<div class="meta">
+						<time class="published" datetime="2024-04-11">April 11, 2024</time>
+						<a href="#" class="author"><span class="name">Yogya</span><img src="../images/avatar.jpg"
+								alt="" /></a>
+					</div>
+				</header>
+				<p>In supervised learning, when the desired output y for a given input x is not just a category but a
+					number in
+					a continuous domain, we call that a regression problem; otherwise, it&#39;s a classification
+					problem.</p>
+				<h2 id="lecture-1-linear-regression">Lecture 1: Linear Regression</h2>
+				<p>In supervised learning, when the desired output y for a given input x is not just a category but a
+					number in a continuous domain, we call that a regression problem; otherwise, it&#39;s a
+					classification problem.</p>
+				<p>To understand Linear Regression, let&#39;s examine the classic example of ML: housing price
+					prediction! Let&#39;s consider the following dataset:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Area(sq.ft)</th>
+							<th># Bedrooms</th>
+							<th>Price(1000$)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2104</td>
+							<td>3</td>
+							<td>360</td>
+						</tr>
+						<tr>
+							<td>1500</td>
+							<td>2</td>
+							<td>320</td>
+						</tr>
+						<tr>
+							<td>980</td>
+							<td>1</td>
+							<td>200</td>
+						</tr>
+						<tr>
+							<td>2400</td>
+							<td>3</td>
+							<td>350</td>
+						</tr>
+						<tr>
+							<td>1416</td>
+							<td>2</td>
+							<td>300</td>
+						</tr>
+						<tr>
+							<td>3000</td>
+							<td>4</td>
+							<td>400</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p>Here, our desired output is to predict the Price (denoted as y), and the input will be a 2D vector
+					containing information on area and number of bedrooms ( x is a 2D vector with 2 features).</p>
+				<p>Now, suppose you are tasked with creating a model that can predict the price with the least possible
+					error given input features. How would you approach this? We&#39;ll come back to the specific problem
+					of house price prediction shortly.</p>
+				<p>Hint: This process involves considering two things. First, how to represent this model. Second, how
+					to train the model.</p>
+				<p>Given one known variable(x) and one unkown variable(y) that&#39;s assumed to be dependent on the
+					known variable, the first model that comes to my mind is, y = mx + c, which represents a line. Now
+					how do we find m and c? Given 2 points from training dataset we can find a line that fits through
+					those 2 points. But does it make sense to train like this? As the number of data points increases,
+					we keep getting new values for m and c without any generalizability to the model.
+					Considering only the area as input below is the graph that shows this model:
+					<img src="./../images/Lec1Plot1.png" alt="Plot1!">
+					Now if given a new x and asked to find y, which m and c will you use?
+				</p>
+				<p>So, the solution would be to learn one single line. But how is that possible as all these points
+					don&#39;t fall on the same line?
+					So, we aim to find the best possible line. To achieve this, we first define a loss function which
+					gives us a measure of how well or unwell the line is fitting the data. Here our loss function would
+					be sum of squares of distance from the true point to the closest point on the line. This is called
+					sum of least square loss. This intutively seems like a good way to measure the &quot;fitness&quot;
+					of our model. So while training our goal will be to minimise this loss value as much as possible.
+					<img src="./../images/Lec1Plot2.png" alt="Plot2!">
+				</p>
+				<h4
+					id="this-is-linear-regression-now-let-s-backtrack-to-our-price-prediction-problem-with-two-input-features-">
+					This is linear regression. Now, let&#39;s backtrack to our price prediction problem with two input
+					features:</h4>
+				<p>Our objective function:
+					<img src="https://latex.codecogs.com/svg.latex?%5Ctext%7BSSE%7D%20%3D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%20%28y_i%20-%20%5Chat%7By_i%7D%29%5E2"
+						alt="SSE">
+				</p>
+				<p>where:</p>
+				<ul>
+					<li>( N ) is the number of data points,</li>
+					<li>( y_i ) is the actual value of the dependent variable for the ( i )th data point,</li>
+					<li>( \hat{y}_i ) is the predicted value of the dependent variable for the ( i )th data point.</li>
+				</ul>
+				<p>The goal of linear regression is to find the regression coefficients that minimize the SSE, which can
+					be expressed as:</p>
+				<p><img src="https://latex.codecogs.com/svg.latex?%5Cmin_%7B%5Ctheta%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%20%28y_i%20-%20%5Chat%7By_i%7D%29%5E2"
+						alt="minimize"></p>
+				<p>Here we have two input features, hence the line quation is modified as: </p>
+				<p>$$
+					\hat{y}_i = \theta_0 + \theta_1 \cdot x_1 + \theta_2 \cdot x_2
+					\theta &#39;s are said to be model parameters (core elements of model learnt during training - eg:
+					weights)
+					\hat{y}_i also written as h(\x_i) is the hypothesis or the predict function
+					$$</p>
+				<p>Note: This model h is linear w.r.t. \theta</p>
+				<h4
+					id="now-the-next-big-question-how-do-we-determine-the-values-of-parameters-or-rather-how-do-we-train-the-model-">
+					Now, the next big question: How do we determine the values of parameters? Or rather, how do we train
+					the model?</h4>
+				<p>Recall that our goal is to find parametes that minimize the loss. </p>
+				<p>Imagine you&#39;re blindfolded on a mountain, and your goal is to reach the lowest point in the
+					valley. However, you can only sense the steepness of the slope beneath your feet but can&#39;t see
+					the landscape.
+					You start at a random position on the mountain. Without any knowledge of the terrain, you might take
+					a step in any direction. With each step you take, you sense the steepness of the slope beneath your
+					feet. This slope indicates the direction of the steepest descent, i.e., the direction towards the
+					lowest point in the valley. Based on the slope you feel, you adjust your direction and take a step
+					downhill. The steeper the slope, the larger your step will be. You continue this process, repeatedly
+					adjusting your direction based on the slope, until you reach the bottom of the valley or until you
+					can&#39;t descend further.
+					The algorithm above has a formal name and is very famous in ML, it is called the gradient descent.
+					Now you all might be wondering why this algorithm matters in our scenario. That is because in
+					machine learning, the loss function represents the energy state. In our mountain analogy, the energy
+					state corresponds to the height on the mountain, and reaching the bottom of the valley corresponds
+					to minimizing the energy. We can reach valley using gradient descent. (For more elaborate discussion
+					check Apendix A).</p>
+				<p>Gradient Descent Algorithm:
+					In gradient descent, we start with initial guesses for the parameters \theta and update them
+					iteratively in the opposite direction of the gradient of the loss function with respect to the
+					parameters. The update rule for each parameter \theta_j (where j=0,1,2,...) is given by:
+					<img src="https://latex.codecogs.com/svg.latex?\theta_j%20%3A%3D%20%5Ctheta_j%20-%20%5Calpha%20%5Cfrac%7B%5Cpartial%7D%7B%5Cpartial%20%5Ctheta_j%7D%20%5Ctext%7BSSE%7D"
+						alt="Equation">
+				</p>
+				<p>Here, \alpha is the learning rate, which determines the size of the steps we take towards the
+					minimum, and the partial derivative of the sum of squared errors (SSE) with respect to the parameter
+					gives the direction where the slope/steep is increasing the most. Hence we subtract that. Also note,
+					\alpha is said to be hyperparameter of the model(these are like tunable settings).</p>
+				<p>Note, A higher learning rate means taking larger steps during optimization, which can lead to faster
+					convergence but may risk overshooting the optimal solution or bouncing around it. Conversely, a
+					lower learning rate can make the optimization process slower but more stable.</p>
+				<p>Alternatively, only in the case of linear regression, a closed-form solution exists which is given
+					by:
+					<img src="https://latex.codecogs.com/svg.latex?\theta%20%3D%20%28X%5E%7BT%7D%20X%29%5E%7B-1%7D%20X%5E%7BT%7D%20y"
+						alt="Equation">
+				</p>
+				<h3 id="references">References</h3>
+				<ol>
+					<li><a
+							href="https://web.eecs.umich.edu/~honglak/teaching/eecs545/">https://web.eecs.umich.edu/~honglak/teaching/eecs545/</a>
+					</li>
+					<li><a
+							href="https://cs229.stanford.edu/main_notes.pdf">https://cs229.stanford.edu/main_notes.pdf</a>
+					</li>
+				</ol>
+				<h3 id="apendix">Apendix</h3>
+				<h4 id="a-loss-function-as-energy-state">A. Loss function as energy state</h4>
+				<p>In machine learning, the loss function serves a similar purpose to the concept of an &quot;energy
+					state&quot; in physics. Let&#39;s elaborate on this analogy:</p>
+				<p>Loss Function as Energy State:
+					In physics, an energy state refers to the amount of potential energy an object possesses. The higher
+					the object is positioned, the more potential energy it has.</p>
+				<ol>
+					<li>Similarly, in machine learning, the loss function represents the amount of error or discrepancy
+						between the predicted outputs of the model and the actual observed outputs (or targets) in the
+						training data. This error can be viewed as a form of &quot;potential&quot; to improve the
+						model&#39;s performance.</li>
+					<li>Therefore, the higher the loss function value, the more &quot;potential&quot; there is for
+						improvement in the model&#39;s predictions.
+						Minimizing Loss Function as Descent to Lower Energy State:</li>
+					<li>In physics, objects naturally tend to move towards lower energy states to minimize their
+						potential energy.</li>
+					<li>Likewise, in machine learning, the goal is to minimize the loss function to improve the
+						model&#39;s predictive performance. This is akin to descending to a lower &quot;energy
+						state&quot; in the model&#39;s performance space.</li>
+					<li>Gradient descent is the method used to iteratively adjust the parameters of the model in the
+						direction that reduces the loss function the most. This process is analogous to descending a
+						slope to reach a lower energy state.</li>
+				</ol>
+				<h4 id="b-gradient-descent-convergence">B. Gradient descent convergence</h4>
+				<h4 id="c-learning-rate">C. Learning Rate</h4>
+				<p>Now, you all might have the question of how are we going to decide on what value should be given to
+					alpha?
+					There is no specific formula or algorithm to find the best learning rate. The learning rate
+					typically falls in the range of 0.1 to 0.0001.
+					Instead of fixing the learning rate throughout training, some approaches involve scheduling or
+					annealing the learning rate over time. Techniques like learning rate decay, where the learning rate
+					decreases over epochs, or cyclical learning rates, where the learning rate oscillates between two
+					bounds, can be effective.</p>
+				<h4 id="d-regularisation-">D. Regularisation.</h4>
+				<p>It can be intutively understood that as we increase the features we can get better performance for
+					the model on training data. But too many features causes the model to overfit to the training data
+					leading to a model that fail miserably when a new data input that it hasn&#39;t encountered in
+					training comes up. To avaid this we add a regularisation term. This term adds a penalty on large
+					weight values.</p>
+				<p><a
+						href="https://latex.codecogs.com/svg.latex?\text{minimize}%20\left(%20||\mathbf{y}%20-%20\mathbf{X}\beta||_2^2%20+%20\lambda%20||\beta||_2^2%20\right">https://latex.codecogs.com/svg.latex?\text{minimize}%20\left(%20||\mathbf{y}%20-%20\mathbf{X}\beta||_2^2%20+%20\lambda%20||\beta||_2^2%20\right</a>)
+					This modified objective function&#39;s model is called ridge linear regression.</p>
+				<h4 id="e-locally-weighted-linear-regression">E. Locally weighted linear regression</h4>
+			</article>
+
+		</div>
+
+		<!-- Footer -->
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+					href="http://unsplash.com">Unsplash</a>.</p>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
