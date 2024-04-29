@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Linear Regression</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="single is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Home</a></h1>
+			<nav class="links">
+				<ul>
+					<li><a href="../single.html">Blog</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="#">Projects</a></li>
+				</ul>
+			</nav>
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="#">
+							<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2><a href="#">Logistic Regression</a></h2>
+						<p>Lecture 2 of Machine Learning Series</p>
+					</div>
+					<div class="meta">
+						<time class="published" datetime="2024-04-29">April 2s9, 2024</time>
+						<a href="#" class="author"><span class="name">Yogya</span><img src="../images/avatar.jpg"
+								alt="" /></a>
+					</div>
+				</header>
+				<p>We talked about a case where the output y can take continuous values, Now what if y is a set of discerete values, i.e, categories or classes.
+Can we use the same linear regression here to predict y given x. Intutively this doen&#39;t seem right because there&#39;s cases where the h(x) can be values grater than 1. In that case how do we classify those values as class A or B.</p>
+<h2 id="lecture-2-logistic-regression">Lecture 2: Logistic Regression</h2>
+<p>So, we use :
+    <img src="https://latex.codecogs.com/svg.latex?h(x)%20%3D%20%5Cfrac%7B1%7D%7B1%20%2B%20e%5E%7B-%5Ctheta%5ET%20%5Ccdot%20x%7D%7D" alt="equation" />
+    as this function binds the output between 0 to 1. This is sigmoid function: g(z) = 1 / (1 + e^-z). 
+Now, the differetial of this function is g&#39;(z) = g(z)(1 - g(z))</p>
+<p>Let us assume that, 
+P(y=1|x; &theta;) = h(x)
+P(y=0|x; &theta;) = 1 - h(x)</p>
+<p>Therefore, <img src="https://latex.codecogs.com/svg.latex?P(y|x;%20%5Ctheta)%20%3D%20(h(x))^y%20%5Ccdot%20(1%20-%20h(x))%5E%7B(1-y)%7D" alt="equation" />
+</p>
+<p>Let&#39;s digress for a bit, In statistics, likelihood is a measure of how well a particular probability model (or distribution) describes the observed data. It quantifies the degree of support provided by the data for particular values of the unknown parameters of the model. In simple terms, likelihood tells us how probable the observed data are given a certain set of model parameters.
+In the case of Logistic regression, likelihood is given by: L(&theta;) = p(y | X; &theta;) = Product of p(y(i)|x(i); &theta;) assuming that all n training samples were genererated independently.</p>
+<p>Instead of maximising likelihood it&#39;s simpler and more prefered to maximise the log of likelihood (more discussion in Appendix),</p>
+<p>l(&theta;) = log(L(&theta;))</p>
+<p>Now to find the thetas that enable p(y|X) to be maximum, we use gradient ascent, &theta; = &theta; + &alpha; * gradient of l(&theta;) wrt &theta;.</p>
+<p>Great we solved logistic regresion using gradient descent (check out this blog for more on gradient descent). What was our original problem and what have we solved?</p>
+<p>Our original problem, was to classify weather the given x belongs to class A or B. Now that we have found theta from gradient descent, we calculate h(x) using this theta for given x. Now calculate P(y=A|x) and P(y=B|x) to find the most probable class X belongs to.</p>
+<h2 id="softmax-regression">Softmax Regression</h2>
+<p>In the case of multi-category classification, we use softmax function instead of sigmoid.</p>
+<h3 id="appendix">APPENDIX</h3>
+<h5 id="a-log-likelihood">A. Log Likelihood</h5>
+<p>One advantage is that log likelihood converts the products to summation which helps in reducing computational complexity. Also, as log is a monotonus function maximising likelihood is same as maximising log likehood.</p>
+<h5 id="b-newton-s-method">B. Newton&#39;s method</h5>
+			</article>
+
+		</div>
+
+		<!-- Footer -->
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+					href="http://unsplash.com">Unsplash</a>.</p>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
