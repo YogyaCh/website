@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Linear Regression</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="single is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Home</a></h1>
+			<nav class="links">
+				<ul>
+					<li><a href="../single.html">Blog</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="#">Projects</a></li>
+				</ul>
+			</nav>
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="#">
+							<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2><a href="#">Gaussian Discriminant Analysis and Naive Bayes</a></h2>
+						<p>Lecture 3 of Machine Learning Series</p>
+					</div>
+					<div class="meta">
+						<time class="published" datetime="2024-09-04">Sep 4, 2024</time>
+						<a href="#" class="author"><span class="name">Yogya</span><img src="../images/avatar.jpg"
+								alt="" /></a>
+					</div>
+				</header>
+				<p>Util now to classify we tried to find out p(y|x), i.e, given a new data sample we calculated the probabilty of the sample being in different classes and chose the class with the best probabilty. But, another form of modelling involves modelling p(x|y) and then using bayes rule to find out p(y|x) this type is generative learning algorithms.</p>
+<h2 id="lecture-3-gaussian-discriminant-analysis-and-naive-bayes">Lecture 3: Gaussian Discriminant Analysis and Naive Bayes</h2>
+<p>Consider a classification problem where we need to construct a model to classify images of cats and dogs. In Gaussian Discriminant Analysis (GDA), we model <code>p(x|y)</code> as distributed according to a multivariate normal distribution.</p>
+<p>For a binary classification problem:</p>
+<ul>
+<li>Let the random variable <code>y</code> be distributed using a Bernoulli RV with parameter <code>p</code>.</li>
+<li><code>p(y = cats) = p</code> and <code>p(y = dogs) = 1-p</code>.</li>
+</ul>
+<p>In GDA:</p>
+<ul>
+<li><code>x|y=0 ~ N(μ_0,E)</code></li>
+<li><code>x|y=1 ~ N(μ_1,E)</code></li>
+</ul>
+<p>We have 4 model parameters: <code>p</code>, <code>μ_0</code>, <code>μ_1</code>, <code>E</code>.</p>
+<p>Our goal is to maximize the likelihood of each class generating the data point. The likelihood <code>l = p(x,y)</code>, and its log-likelihood is:</p>
+<p><img src="https://latex.codecogs.com/svg.latex?\log\mathcal{L}(\boldsymbol{\mu}_1,\boldsymbol{\Sigma}_1,\boldsymbol{\mu}_2,\boldsymbol{\Sigma}_2,...,\boldsymbol{\mu}_K,\boldsymbol{\Sigma}_K,\phi_1,\phi_2,...,\phi_K)=\sum_{i=1}^{N}\log\left(\sum_{k=1}^{K}\phi_k\mathcal{N}(x^{(i)}|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\right)" /></p>
+<p>To find optimal means, covariances, and <code>p</code> to maximize the likelihood:</p>
+<ol>
+<li><strong>Gradient Calculation:</strong> Compute the gradient of the log-likelihood function with respect to the parameters.</li>
+<li><strong>Initialization:</strong> Proper initialization of the parameters is crucial for gradient descent to converge to a good solution.</li>
+<li><strong>Learning Rate:</strong> Choose an appropriate learning rate for gradient descent to avoid slow convergence or divergence.</li>
+<li><strong>Convergence Criteria:</strong> Define a convergence criterion to stop the optimization process.</li>
+<li><strong>Efficiency:</strong> Gradient descent might require many iterations to converge, especially for complex likelihood functions or large datasets.</li>
+</ol>
+<p>While gradient descent can be used, methods like the Expectation-Maximization (EM) algorithm are often preferred for GDA due to their structured approach.</p>
+<h3 id="when-to-use-gda-over-logistic-regression-">When to Use GDA over Logistic Regression:</h3>
+<ul>
+<li><strong>Multimodal Distributions:</strong> When classes have significantly different distributions and can&#39;t be well-separated by a linear boundary.</li>
+<li><strong>Small Sample Size:</strong> GDA can perform well with small samples by modeling feature distributions within each class.</li>
+<li><strong>Class Imbalance:</strong> GDA handles class imbalance by explicitly modeling each class distribution.</li>
+<li><strong>Correlated Features:</strong> GDA can model feature correlation, unlike logistic regression which assumes feature independence.</li>
+</ul>
+<h3 id="when-to-use-logistic-regression-over-gda-">When to Use Logistic Regression over GDA:</h3>
+<ul>
+<li><strong>Non-Normal Distributions:</strong> If feature distributions aren&#39;t Gaussian.</li>
+<li><strong>Large Sample Size:</strong> Logistic regression can be computationally more efficient.</li>
+<li><strong>Linear Decision Boundaries:</strong> If the decision boundary is linear or close to linear.</li>
+<li><strong>Outliers:</strong> GDA is sensitive to outliers, while logistic regression might be less affected.</li>
+</ul>
+<hr>
+<p>Here&#39;s the remaining part of your lecture notes:</p>
+<hr>
+<p>In GDA, the feature vectors ( x ) were continuous, real-valued vectors. Let’s now talk about a different learning algorithm in which the ( x_j )&#39;s are discrete-valued.</p>
+<p>Here we use Bayes&#39; theorem to utilize ( p(x|y) ), where ( x ) is a vector of discrete features and ( y ) represents the class label. In this case, the Bayes&#39; theorem helps us compute the posterior probability ( p(y|x) ) from the likelihood ( p(x|y) ) and the prior ( p(y) ). This is particularly useful in models like Naive Bayes where the assumption is that the features are conditionally independent given the class label.</p>
+<h2 id="naive-bayes-classifier">Naive Bayes Classifier</h2>
+<p>In Naive Bayes classification, we assume that the features are conditionally independent given the class label. This simplifies the computation of ( p(x|y) ) as follows:</p>
+<p><img src="https://latex.codecogs.com/svg.latex?p(x|y)%20=%20\prod_{j=1}^{n}%20p(x_j|y)" /></p>
+<p>Where ( x_j ) is the ( j )-th feature, and ( n ) is the total number of features. For discrete features, ( p(x_j|y) ) is typically estimated as:</p>
+<p><img src="https://latex.codecogs.com/svg.latex?p(x_j|y)%20=%20\frac{\text{Count}(x_j,%20y)}{\text{Count}(y)}" /></p>
+<p>The Naive Bayes classifier computes the posterior probability for a class ( y ) given a feature vector ( x ) using:</p>
+<p><img src="https://latex.codecogs.com/svg.latex?p(y|x)%20=%20\frac{p(x|y)%20\cdot%20p(y)}{p(x)}"/></p>
+<p>Where ( p(x) ) is the marginal likelihood of the features, which can be computed as:</p>
+<p><img src="https://latex.codecogs.com/svg.latex?p(x)%20=%20\sum_{y%27}%20p(x|y%27)%20\cdot%20p(y%27)"/></p>
+<h3 id="when-to-use-naive-bayes-">When to Use Naive Bayes:</h3>
+<ul>
+<li><strong>Feature Independence:</strong> When features are conditionally independent given the class label.</li>
+<li><strong>Text Classification:</strong> Particularly effective for text classification tasks such as spam filtering and sentiment analysis.</li>
+<li><strong>Large Feature Space:</strong> Naive Bayes can handle a large number of features efficiently.</li>
+<li><strong>Discrete Features:</strong> Suitable for discrete-valued features such as words or categorical data.</li>
+</ul>
+<h3 id="when-not-to-use-naive-bayes-">When Not to Use Naive Bayes:</h3>
+<ul>
+<li><strong>Feature Dependence:</strong> If the features are not conditionally independent, the model may perform poorly.</li>
+<li><strong>Complex Relationships:</strong> When the relationships between features are complex and cannot be captured by the independence assumption.</li>
+</ul>
+<p>By contrasting GDA and Naive Bayes, we can choose the appropriate classification approach based on the nature of the feature data and the assumptions that can be realistically made about it.</p>
+<hr>
+<h2 id="appendix">Appendix</h2>
+<h3 id="a-why-the-assumption-of-p-x-y-as-multivariate-normal-distribution-">A. Why the Assumption of <code>p(x|y)</code> as Multivariate Normal Distribution?</h3>
+<ol>
+<li><strong>Ease of Modeling:</strong> The multivariate normal distribution is well-studied and understood, characterized by mean vector and covariance matrix parameters.</li>
+<li><strong>Historical Precedence:</strong> Gaussian distributions often provide reasonable approximations for real-world phenomena, making them a practical choice.</li>
+</ol>
+<h3 id="b-why-not-directly-model-p-x-as-gaussian-distribution-and-find-mean-and-variance-">B. Why Not Directly Model <code>p(x)</code> as Gaussian Distribution and Find Mean and Variance?</h3>
+<p>Because we&#39;re defining decision boundaries to separate classes, not trying to understand the data itself but specific features relative to classes. </p>
+			</article>
+
+		</div>
+
+		<!-- Footer -->
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+					href="http://unsplash.com">Unsplash</a>.</p>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
