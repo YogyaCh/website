@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Build Process</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="single is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="../index.html">Home</a></h1>
+            <nav class="links">
+                <ul>
+                    <li><a href="../single.html">Blog</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../projects.html">Projects</a></li>
+                </ul>
+            </nav>
+            <nav class="main">
+                <ul>
+                    <li class="search">
+                        <a class="fa-search" href="#search">Search</a>
+                        <form id="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Post -->
+            <article class="post">
+                <header>
+                    <div class="title">
+                        <h2><a href="#">Understanding the Build Process: From Configure to Run-Time</a></h2>
+                        <p>Some Computer Science Basics</p>
+                    </div>
+                    <div class="meta">
+                        <time class="published" datetime="2024-01-01">Jan 1, 2024</time>
+                        <a href="#" class="author"><span class="name">Yogya</span><img src="../images/avatar.jpg"
+                                alt="" /></a>
+                    </div>
+                </header>
+                <p>In the world of software development, the process of transforming source code into an executable
+                    program involves several distinct phases: configure-time, compile-time, link-time, and run-time.
+                    Each phase plays a crucial role in ensuring that your code is correctly processed, optimized, and
+                    executed. Understanding these phases will not only help you troubleshoot build issues but also make
+                    informed decisions about optimizing and configuring your projects. In this post, we&#39;ll dive deep
+                    into each of these stages, explore essential tools, and provide practical examples to help you grasp
+                    these concepts thoroughly.</p>
+                <h2 id="-1-configure-time-setting-the-stage-"><strong>1. Configure-Time: Setting the Stage</strong></h2>
+                <h3 id="-what-it-is-"><strong>What It Is</strong></h3>
+                <p>Configure-time is the initial phase where the build system prepares everything needed for the actual
+                    build. During this stage, tools like Autoconf and CMake generate the necessary build scripts based
+                    on the system&#39;s environment and project requirements.</p>
+                <h3 id="-why-it-s-needed-"><strong>Why It’s Needed</strong></h3>
+                <p>This phase ensures that the build system can adapt to different environments and dependencies. It
+                    checks for required libraries, compiler features, and system capabilities, creating a tailored build
+                    configuration.</p>
+                <h3 id="-example-"><strong>Example</strong></h3>
+                <p><strong>Autoconf:</strong></p>
+                <p>Autoconf is a tool that generates configuration scripts. A typical project might include a
+                    <code>configure</code> script that checks for system features and dependencies.</p>
+                <pre><code class="lang-bash">./configure
+</code></pre>
+                <p><strong>CMake:</strong></p>
+                <p>CMake is a more modern and cross-platform build system generator. You run CMake to generate build
+                    files for your specific build system.</p>
+                <pre><code class="lang-bash">cmake .
+</code></pre>
+                <h3 id="-explanation-"><strong>Explanation</strong></h3>
+                <p>The <code>configure</code> script created by Autoconf or the <code>CMakeLists.txt</code> file used by
+                    CMake are responsible for detecting your system’s environment and generating Makefiles or project
+                    files. These files dictate how the build process should proceed, including paths to dependencies and
+                    compiler options.</p>
+                <h2 id="-2-compile-time-translating-code-to-object-files-"><strong>2. Compile-Time: Translating Code to
+                        Object Files</strong></h2>
+                <h3 id="-what-it-is-"><strong>What It Is</strong></h3>
+                <p>Compile-time is when the source code is transformed into object files. This phase involves syntax
+                    checking, code optimization, and the generation of machine code that the computer can execute.</p>
+                <h3 id="-why-it-s-needed-"><strong>Why It’s Needed</strong></h3>
+                <p>Compilation converts human-readable code into a format that the computer can understand and execute.
+                    It also performs optimizations to enhance performance and efficiency.</p>
+                <h3 id="-example-"><strong>Example</strong></h3>
+                <p><strong>GCC Compilation Command:</strong></p>
+                <pre><code class="lang-bash"><span class="hljs-selector-tag">gcc</span> <span class="hljs-selector-tag">-c</span> <span class="hljs-selector-tag">myfile</span><span class="hljs-selector-class">.c</span> <span class="hljs-selector-tag">-o</span> <span class="hljs-selector-tag">myfile</span><span class="hljs-selector-class">.o</span>
+</code></pre>
+                <p>In this example, <code>-c</code> tells GCC to compile the source file into an object file,
+                    <code>myfile.o</code>, without linking.</p>
+                <h3 id="-explanation-"><strong>Explanation</strong></h3>
+                <p>During compile-time, the compiler processes each source file, checks for syntax errors, and
+                    translates the code into an intermediate format. Compiler flags like <code>-O2</code> for
+                    optimization and <code>-g</code> for debugging can be used to control the compilation process.</p>
+                <h2 id="-3-link-time-combining-object-files-"><strong>3. Link-Time: Combining Object Files</strong></h2>
+                <h3 id="-what-it-is-"><strong>What It Is</strong></h3>
+                <p>Link-time is when the object files generated during compile-time are combined to form the final
+                    executable. The linker resolves references between object files and libraries.</p>
+                <h3 id="-why-it-s-needed-"><strong>Why It’s Needed</strong></h3>
+                <p>Linking ensures that all functions and variables are correctly connected, and external references are
+                    resolved. This process creates a complete executable or library file.</p>
+                <h3 id="-example-"><strong>Example</strong></h3>
+                <p><strong>Linking with GCC:</strong></p>
+                <pre><code class="lang-bash">gcc myfile<span class="hljs-selector-class">.o</span> -o myprogram
+</code></pre>
+                <p>Here, <code>myfile.o</code> is linked to produce the executable <code>myprogram</code>.</p>
+                <h3 id="-explanation-"><strong>Explanation</strong></h3>
+                <p>During link-time, the linker takes all object files and libraries, resolves symbol references, and
+                    produces a single executable file. This step also involves determining whether the executable will
+                    use dynamic or static linking.</p>
+                <h2 id="-4-run-time-executing-the-program-"><strong>4. Run-Time: Executing the Program</strong></h2>
+                <h3 id="-what-it-is-"><strong>What It Is</strong></h3>
+                <p>Run-time is the final phase when the executable program is run. This is when the program interacts
+                    with the operating system and performs its intended tasks.</p>
+                <h3 id="-why-it-s-needed-"><strong>Why It’s Needed</strong></h3>
+                <p>Run-time is where the program&#39;s functionality is realized. It&#39;s the point at which users
+                    interact with the software and any potential runtime issues like memory leaks or performance
+                    bottlenecks become evident.</p>
+                <h3 id="-example-"><strong>Example</strong></h3>
+                <p><strong>Running the Program:</strong></p>
+                <pre><code class="lang-bash">./myprogram
+</code></pre>
+                <h3 id="-explanation-"><strong>Explanation</strong></h3>
+                <p>At run-time, the operating system loads the executable into memory and starts its execution. This
+                    phase is critical for testing the program’s performance and behavior under real-world conditions.
+                </p>
+                <h2 id="-additional-topics-"><strong>Additional Topics</strong></h2>
+                <h3 id="-autoconf-and-cmake-"><strong>Autoconf and CMake</strong></h3>
+                <p><strong>Autoconf:</strong> Automates the configuration process by generating <code>configure</code>
+                    scripts that adapt to various environments.</p>
+                <p><strong>CMake:</strong> A powerful cross-platform tool that generates build files for different build
+                    systems. It allows for more sophisticated project configurations and dependency management.</p>
+                <h3 id="-dynamic-vs-static-binaries-"><strong>Dynamic vs. Static Binaries</strong></h3>
+                <p><strong>Dynamic Linking:</strong> Libraries are linked at run-time, reducing executable size and
+                    allowing for updates without recompiling.</p>
+                <p><strong>Static Linking:</strong> Libraries are included in the executable at compile-time, resulting
+                    in a larger executable but with no runtime dependencies.</p>
+                <h3 id="-debug-vs-release-builds-"><strong>Debug vs. Release Builds</strong></h3>
+                <p><strong>Debug Builds:</strong> Include additional information for debugging and are not optimized for
+                    performance. Useful for development and troubleshooting.</p>
+                <p><strong>Release Builds:</strong> Optimized for performance and do not include debugging information.
+                    Ideal for final deployment.</p>
+                <h3 id="-compiler-optimization-"><strong>Compiler Optimization</strong></h3>
+                <p>Compiler optimizations enhance performance or reduce the size of the executable. Common flags
+                    include:</p>
+                <ul>
+                    <li><code>-O1</code>, <code>-O2</code>, <code>-O3</code>: Different levels of optimization.</li>
+                    <li><code>-Ofast</code>: Aggressive optimizations that may change program behavior.</li>
+                </ul>
+                <h3 id="-example-of-optimization-"><strong>Example of Optimization:</strong></h3>
+                <pre><code class="lang-bash"><span class="hljs-selector-tag">gcc</span> <span class="hljs-selector-tag">-O2</span> <span class="hljs-selector-tag">-o</span> <span class="hljs-selector-tag">myprogram</span> <span class="hljs-selector-tag">myfile</span><span class="hljs-selector-class">.c</span>
+</code></pre>
+                <p>Here, <code>-O2</code> enables moderate optimizations for performance.</p>
+                <h2 id="-conclusion-"><strong>Conclusion</strong></h2>
+                <p>Understanding the build process—configure-time, compile-time, link-time, and run-time—provides
+                    insight into how your code is transformed into a runnable program. By mastering these concepts and
+                    tools like Autoconf, CMake, and various compiler options, you’ll be better equipped to manage and
+                    optimize your projects. Experimenting with different configurations and optimizations will also help
+                    you understand their impact on your software, leading to more efficient and effective development.
+                </p>
+            </article>
+
+        </div>
+
+        <!-- Footer -->
+        <section id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+                    href="http://unsplash.com">Unsplash</a>.</p>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Parallel Computing Terminiology</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="single is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="../index.html">Home</a></h1>
+            <nav class="links">
+                <ul>
+                    <li><a href="../single.html">Blog</a></li>
+                    <li><a href="../about.html">About</a></li>
+                    <li><a href="../projects.html">Projects</a></li>
+                </ul>
+            </nav>
+            <nav class="main">
+                <ul>
+                    <li class="search">
+                        <a class="fa-search" href="#search">Search</a>
+                        <form id="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Post -->
+            <article class="post">
+                <header>
+                    <div class="title">
+                        <h2><a href="#">Understanding Parallel Computing: How Ghost Cells, Memory Architectures Shape
+                                Modern Computing</a></h2>
+                        <p>Part 1 of Parallel Computing Series</p>
+                    </div>
+                    <div class="meta">
+                        <time class="published" datetime="2024-01-01">Sep 1, 2024</time>
+                        <a href="#" class="author"><span class="name">Yogya</span><img src="../images/avatar.jpg"
+                                alt="" /></a>
+                    </div>
+                </header>
+
+                <p>Ever wondered how Google delivers search results in a fraction of a second or how Netflix can
+                    instantly recommend shows based on your preferences? The secret sauce behind these lightning-fast
+                    computations lies in <strong>parallel computing</strong>. But what exactly does this involve? In
+                    this blog, I’ll break down core concepts—covering <strong>Amdahl’s Law</strong>, <strong>ghost
+                        cells</strong>, <strong>stencil algorithms</strong>, <strong>MPI</strong>, and more—keeping it
+                    fun and relatable!</p>
+                <hr>
+                <h3 id="-the-teamwork-of-parallel-computing-shared-vs-distributed-memory-"><strong>The Teamwork of
+                        Parallel Computing: Shared vs. Distributed Memory</strong></h3>
+                <p>Let’s kick off with a simple analogy. Imagine you and a few friends are cooking a huge dinner. You
+                    could either:</p>
+                <ol>
+                    <li>
+                        <p><strong>Shared Memory</strong>: Work together in one kitchen, where everyone shares the same
+                            counter of ingredients. It’s fast and easy, but too many cooks in one kitchen can lead to
+                            bottlenecks. This is like <strong>shared memory</strong> in computing—processors share the
+                            same memory space, but if there are too many, they start to clash.</p>
+                    </li>
+                    <li>
+                        <p><strong>Distributed Memory</strong>: Now, imagine each of you has your own mini kitchen with
+                            separate ingredients. You can cook independently, but if you need something from another
+                            kitchen, you have to send a message to get it. That’s <strong>distributed
+                                memory</strong>—processors have their own memory and communicate through messages (think
+                            digital letters).</p>
+                    </li>
+                </ol>
+                <hr>
+                <h3 id="-amdahl-s-law-why-teamwork-has-limits-"><strong>Amdahl’s Law: Why Teamwork Has Limits</strong>
+                </h3>
+                <p>Now let’s talk about <strong>Amdahl’s Law</strong>, which explains why adding more processors doesn’t
+                    always speed up a task. Imagine you’re painting a fence, and it takes you 10 hours. You invite four
+                    friends to help, and now it takes only 3 hours. Great! You’ve sped up by a factor of 3.33. </p>
+                <p>But, some parts of the fence are too narrow—only one person can paint them at a time. This is the
+                    <strong>serial portion</strong> of the task, and it creates a bottleneck. Amdahl’s Law says no
+                    matter how many friends you invite, that serial part will always limit your overall speedup. This is
+                    why simply adding more processors doesn’t lead to infinite improvement.</p>
+                <hr>
+                <h3 id="-speedup-and-efficiency-measuring-teamwork-"><strong>Speedup and Efficiency: Measuring
+                        Teamwork</strong></h3>
+                <p>In computing, <strong>speedup</strong> is how much faster the task is with multiple processors versus
+                    just one. Meanwhile, <strong>efficiency</strong> measures how well your team is working. If you
+                    bring in five friends to paint the fence, but two of them are just watching, you’re not using your
+                    team efficiently.</p>
+                <ul>
+                    <li><strong>Speedup</strong> = (Time with 1 processor) / (Time with p processors).</li>
+                    <li><strong>Efficiency</strong> = Speedup / Number of processors.</li>
+                </ul>
+                <p>If you add 4 processors and see a speedup of 3.33, your efficiency is 83%. It’s like making sure
+                    everyone is doing their fair share in a group project.</p>
+                <hr>
+                <h3 id="-stencil-algorithms-painting-a-mural-with-your-neighbors-"><strong>Stencil Algorithms: Painting
+                        a Mural with Your Neighbors</strong></h3>
+                <p>Here’s a fresh analogy for <strong>stencil algorithms</strong>: Imagine you and your neighbors are
+                    each painting a section of a giant mural. The catch? What you paint depends on the colors your
+                    neighbors are using. To make sure your section blends in seamlessly, you need to know what’s
+                    happening on either side of your part. </p>
+                <p>In computing, a <strong>stencil algorithm</strong> works similarly. Each processor is responsible for
+                    its section of data, but it also needs neighboring data to make accurate calculations. For example,
+                    calculating a temperature at one point might depend on the temperatures to the left and right. In
+                    image processing, adjusting one pixel often depends on the neighboring pixels.</p>
+                <hr>
+                <h3 id="-ghost-cells-sneak-peeks-from-neighboring-kitchens-"><strong>Ghost Cells: Sneak Peeks from
+                        Neighboring Kitchens</strong></h3>
+                <p>Now, how do processors handle these neighboring values when they don’t directly own them? This is
+                    where <strong>ghost cells</strong> come into play. Imagine you’re cooking in one kitchen, but you
+                    need to know what your neighbor is doing to keep things consistent. You can’t see into their
+                    kitchen, but you have a <strong>ghost</strong> that brings over the information you need.</p>
+                <p>In parallel computing, ghost cells store the necessary data from neighboring processors, allowing
+                    each processor to work as if it has all the required information. This way, a processor can
+                    calculate its section without waiting for constant messages from its neighbors. It&#39;s a clever
+                    workaround to avoid bottlenecks in <strong>distributed memory</strong> systems.</p>
+                <p>For example, if processor A needs values from the neighboring processor B to calculate
+                    <code>B(i) = A(i-1)^2 + A(i) + 6*A(i+1)</code>, it uses <strong>ghost cells</strong> to temporarily
+                    store <code>A(i-1)</code> from the neighbor’s section. This allows processor A to complete its
+                    calculation without constant back-and-forth communication.</p>
+                <hr>
+                <h3 id="-mpi-the-post-office-of-parallel-computing-"><strong>MPI: The Post Office of Parallel
+                        Computing</strong></h3>
+                <p>In distributed memory systems, processors can’t just grab data from one another—they have to send
+                    messages. This is where <strong>MPI (Message Passing Interface)</strong> comes in. Think of MPI as
+                    the postal service for processors. Whenever one processor needs something from another, it sends a
+                    message (like mailing a letter). </p>
+                <ul>
+                    <li><strong>MPI_SEND</strong>: Sends a message (e.g., “Can I borrow some data?”).</li>
+                    <li><strong>MPI_RECV</strong>: Receives the message (“Here’s the data you asked for!”).</li>
+                    <li><strong>MPI_INIT</strong>: Starts the messaging system (everyone joins the group chat).</li>
+                    <li><strong>MPI_FINALIZE</strong>: Ends the messaging system (the chat is closed).</li>
+                </ul>
+                <p>MPI ensures that even though processors work on their own sections, they can communicate efficiently
+                    to share the data they need—like neighbors exchanging notes across their fences.</p>
+                <hr>
+                <h3 id="-global-and-local-working-together-in-parallel-"><strong>Global and Local: Working Together in
+                        Parallel</strong></h3>
+                <p>In parallel computing, the terms <strong>global</strong> and <strong>local</strong> are key to
+                    understanding how data is managed:</p>
+                <ul>
+                    <li><strong>Local</strong> refers to the chunk of data that a processor works on directly. It’s like
+                        each painter working on their own section of the mural. Each processor is responsible for its
+                        local portion of the dataset.</li>
+                    <li><strong>Global</strong> refers to the entire dataset, which is distributed among all processors.
+                        Sometimes, processors need to understand the big picture to complete their task. While each
+                        painter focuses on their section, they need to check the global design to ensure their work
+                        aligns with the mural as a whole.</li>
+                </ul>
+                <p>By managing both local and global data effectively, parallel computing ensures that each processor
+                    contributes to the overall task while keeping things running smoothly across all sections.</p>
+                <hr>
+                <h3 id="-bringing-it-all-together-parallel-computing-in-action-"><strong>Bringing It All Together:
+                        Parallel Computing in Action</strong></h3>
+                <p>Let’s put everything together with a real-world scenario. Imagine you’re tasked with analyzing
+                    satellite images to detect wildfires. This is a massive amount of data, so you use <strong>parallel
+                        computing</strong> to divide the images among different processors.</p>
+                <p>Each processor works on its own section using a <strong>stencil algorithm</strong>, calculating the
+                    temperature at each pixel based on its neighbors. But to do this accurately, each processor needs
+                    data from the edges of neighboring sections, so it uses <strong>ghost cells</strong> to store this
+                    information temporarily.</p>
+                <p>Meanwhile, processors use <strong>MPI</strong> to send and receive data from their neighbors,
+                    ensuring the calculations remain accurate across all sections. <strong>Speedup</strong> helps you
+                    handle the massive dataset faster, but as <strong>Amdahl’s Law</strong> reminds us, there are still
+                    limits to how much you can gain as you add more processors. And don’t forget to check your
+                    <strong>efficiency</strong>—you want all your processors working together seamlessly!</p>
+                <hr>
+                <h3 id="-conclusion-the-magic-behind-the-machines-"><strong>Conclusion: The Magic Behind the
+                        Machines</strong></h3>
+                <p>In the end, terms like <strong>Amdahl’s Law</strong>, <strong>stencil algorithms</strong>,
+                    <strong>ghost cells</strong>, and <strong>MPI</strong> might sound technical, but they’re the
+                    building blocks that allow modern computing systems to tackle massive problems—whether it&#39;s
+                    predicting weather patterns, running AI algorithms, or streaming your favorite TV shows.</p>
+                <p>The next time you marvel at how quickly Google delivers search results or how Netflix seems to know
+                    exactly what you want to watch, remember: behind the scenes, there’s an army of processors working
+                    in parallel, talking to each other through MPI, borrowing data via ghost cells, and using stencil
+                    algorithms to keep everything running smoothly. </p>
+                <p>That’s the magic of parallel computing!</p>
+
+            </article>
+
+        </div>
+
+        <!-- Footer -->
+        <section id="footer">
+            <ul class="icons">
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+            </ul>
+            <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+                    href="http://unsplash.com">Unsplash</a>.</p>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
