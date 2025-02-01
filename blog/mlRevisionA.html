@@ -1,0 +1,416 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>ML Revision: Letter A</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="single is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="../index.html">Home</a></h1>
+			<nav class="links">
+				<ul>
+					<li><a href="../single.html">Blog</a></li>
+					<li><a href="../about.html">About</a></li>
+					<li><a href="../projects.html">Projects</a></li>
+				</ul>
+			</nav>
+			<nav class="main">
+				<ul>
+					<li class="search">
+						<a class="fa-search" href="#search">Search</a>
+						<form id="search" method="get" action="#">
+							<input type="text" name="query" placeholder="Search" />
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2><a href="#">ML Revision: Letter A</a></h2>
+						<p>Exploring key concepts in Machine Learning starting with 'A'</p>
+					</div>
+					<div class="meta">
+						<time class="published" datetime="2025-02-01">February 1, 2025</time>
+						<a href="#" class="author"><span class="name">Yogya</span><img src="../images/avatar.jpg"
+								alt="" /></a>
+					</div>
+				</header>
+
+				<!-- AutoML Section -->
+				<h2 id="automl">AutoML</h2>
+				<p><strong>Definition:</strong> AutoML automates the design, selection, and tuning of machine learning models, particularly focusing on hyperparameter optimization.</p>
+				<p><strong>Popular Frameworks:</strong> Google's AutoML, H2O, Auto-sklearn.</p>
+				<pre><code>
+# Example (Using Auto-sklearn)
+import autosklearn.classification
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+
+X, y = load_iris(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+automl = autosklearn.classification.AutoSklearnClassifier(time_left_for_this_task=60)
+automl.fit(X_train, y_train)
+print(automl.score(X_test, y_test))
+				</code></pre>
+
+                <p><strong>How AutoML Works:</strong></p>
+<p>AutoML automates the machine learning pipeline. Here's how:</p>
+<ul>
+    <li><strong>Data Preprocessing:</strong> AutoML handles missing values, scaling, encoding, and feature selection. 
+        For example, missing values <em>x<sub>ij</sub></em> can be imputed using mean imputation:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?x_{ij}%20=%20\frac{\sum_{k=1}^{n}%20x_{kj}}{n}" alt="Mean Imputation Formula" />
+    </li>
+    <li><strong>Model Selection:</strong> AutoML evaluates models using cross-validation and selects the one with minimal loss:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?m^*%20=%20\arg\min_{m%20\in%20M}%20\frac{1}{n}%20\sum_{i=1}^n%20\mathcal{L}(y_i,%20m(x_i))" alt="Model Selection Formula" />
+    </li>
+    <li><strong>Hyperparameter Optimization:</strong> AutoML optimizes hyperparameters using grid search, random search, or Bayesian optimization:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\theta^*%20=%20\arg\max_{\theta}%20a(\theta%20|%20\mathcal{D})" alt="Bayesian Optimization Formula" />
+    </li>
+    <li><strong>Ensembling:</strong> Combines models using stacking, where a meta-model predicts based on individual model outputs:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\hat{y}%20=%20m_{\text{meta}}(m_1(x),%20m_2(x),%20\dots,%20m_k(x))" alt="Ensembling Formula" />
+    </li>
+</ul>
+
+
+
+				<!-- Attention Mechanism Section -->
+				<h2 id="attention-mechanism">Attention Mechanism</h2>
+				<p><strong>Definition:</strong> Attention mechanisms dynamically focus on relevant data parts. Self-attention allows each token to interact with others in a sequence, making it foundational in transformers.</p>
+<h3 id="self-attention">Self-Attention</h3>
+<p><strong>Definition:</strong> Self-attention allows a model to weigh the importance of each token in a sequence relative to other tokens, including itself. This mechanism helps the model capture relationships between words or elements within the input sequence.</p>
+
+<p><strong>How Self-Attention Works:</strong></p>
+<ul>
+    <li><strong>Input Representation:</strong>
+        <br>
+        Let the input sequence consist of \( n \) tokens, where each token is represented as a \( d \)-dimensional vector. The input is:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?X%20\in%20\mathbb{R}^{n%20\times%20d}" alt="Input Representation Formula" />
+    </li>
+    <li><strong>Query, Key, and Value:</strong>
+        <br>
+        The input \( X \) is projected into three different spaces using learnable weight matrices:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?Q%20=%20XW_Q,%20\quad%20K%20=%20XW_K,%20\quad%20V%20=%20XW_V" alt="QKV Projections Formula" />
+        <br>
+        - \( Q \): Query matrix \( \in \mathbb{R}^{n \times d_k} \)<br>
+        - \( K \): Key matrix \( \in \mathbb{R}^{n \times d_k} \)<br>
+        - \( V \): Value matrix \( \in \mathbb{R}^{n \times d_v} \)<br>
+        The dimensions \( d_k \) and \( d_v \) are typically smaller than \( d \).
+    </li>
+    <li><strong>Attention Scores:</strong>
+        <br>
+        The attention scores determine how much focus each token should have on others. These scores are computed as the dot product of \( Q \) and \( K^T \), scaled by \( \sqrt{d_k} \) to stabilize gradients:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\text{Scores}%20=%20\frac{QK^T}{\sqrt{d_k}}" alt="Attention Scores Formula" />
+    </li>
+    <li><strong>Softmax Weights:</strong>
+        <br>
+        Apply a softmax function to the attention scores to obtain weights:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\text{Attention%20Weights}%20=%20\text{Softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)" alt="Softmax Weights Formula" />
+    </li>
+    <li><strong>Output Calculation:</strong>
+        <br>
+        Multiply the attention weights by the value matrix \( V \) to compute the output:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\text{Output}%20=%20\text{Attention%20Weights}%20\cdot%20V" alt="Output Formula" />
+    </li>
+</ul>
+
+<h3 id="multi-head-attention">Multi-Head Attention</h3>
+<p><strong>Intuition Behind Multi-Head Attention:</strong></p>
+<p>While self-attention captures relationships between tokens, multi-head attention extends this idea by allowing the model to focus on different aspects of the input sequence simultaneously. Each "head" operates independently, attending to different subspaces of the input, and their outputs are concatenated to form the final attention representation.</p>
+
+<p><strong>How Multi-Head Attention Works:</strong></p>
+<ul>
+    <li><strong>Multiple Attention Heads:</strong>
+        <br>
+        Instead of using a single set of \( Q, K, V \) weights, the input is projected into multiple sets of \( Q, K, V \), one for each head:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?Q_i%20=%20XW_{Q_i},%20\quad%20K_i%20=%20XW_{K_i},%20\quad%20V_i%20=%20XW_{V_i}" alt="Multi-Head Projections Formula" />
+        <br>
+        where \( i \) indexes the head.
+    </li>
+    <li><strong>Parallel Attention:</strong>
+        <br>
+        Each head computes self-attention independently:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\text{Output}_i%20=%20\text{Softmax}\left(\frac{Q_iK_i^T}{\sqrt{d_k}}\right)%20\cdot%20V_i" alt="Attention Head Formula" />
+    </li>
+    <li><strong>Concatenation:</strong>
+        <br>
+        The outputs of all heads are concatenated:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\text{Concat}(\text{Output}_1,%20\text{Output}_2,%20\dots,%20\text{Output}_h)" alt="Concatenation Formula" />
+    </li>
+    <li><strong>Final Linear Transformation:</strong>
+        <br>
+        The concatenated output is passed through a linear layer:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\text{Final%20Output}%20=%20\text{Concat}(\text{Output}_1,%20\text{Output}_2,%20\dots,%20\text{Output}_h)W_O" alt="Final Output Formula" />
+        <br>
+        where \( W_O \) is a learnable weight matrix.
+    </li>
+</ul>
+
+<p><strong>Benefits of Multi-Head Attention:</strong></p>
+<ul>
+    <li><strong>Parallelism:</strong> Different heads focus on different features of the input, such as positional information or semantic relationships.</li>
+    <li><strong>Rich Representations:</strong> Enables the model to capture diverse relationships and dependencies in the data.</li>
+    <li><strong>Efficiency:</strong> Scales well with high-dimensional data and enables better gradient flow during training.</li>
+</ul>
+
+
+                <pre><code>
+# Example (Using PyTorch)
+import torch
+import torch.nn.functional as F
+
+queries = torch.rand(2, 5, 64)
+keys = torch.rand(2, 5, 64)
+values = torch.rand(2, 5, 64)
+
+d_k = queries.size(-1)
+scores = torch.matmul(queries, keys.transpose(-2, -1)) / torch.sqrt(torch.tensor(d_k))
+attention_weights = F.softmax(scores, dim=-1)
+output = torch.matmul(attention_weights, values)
+print(output)
+				</code></pre>
+
+				<!-- Autoencoders Section -->
+				<h2 id="autoencoders">Autoencoders</h2>
+				<p><strong>Definition:</strong> Autoencoders are unsupervised learning models designed for dimensionality reduction and representation learning. They compress data into a latent space and reconstruct it.</p>
+				<p><strong>Comparison:</strong> Autoencoders generalize PCA, finding non-linear manifolds representing the data.</p>
+				<pre><code>
+# Example (Using PyTorch)
+import torch
+import torch.nn as nn
+
+class Autoencoder(nn.Module):
+    def __init__(self):
+        super(Autoencoder, self).__init__()
+        self.encoder = nn.Sequential(nn.Linear(784, 128), nn.ReLU(), nn.Linear(128, 64))
+        self.decoder = nn.Sequential(nn.Linear(64, 128), nn.ReLU(), nn.Linear(128, 784))
+
+autoencoder = Autoencoder()
+dummy_input = torch.rand(32, 784)
+output = autoencoder(dummy_input)
+print(output.shape)
+				</code></pre>
+
+                <p><strong>How Autoencoders Work:</strong></p>
+<p>Autoencoders compress input data into a latent space and reconstruct it. They consist of:</p>
+<ul>
+    <li><strong>Encoder:</strong> Compresses input <em>X</em> to latent space <em>Z</em>:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?Z%20=%20f_{\text{enc}}(X)%20=%20\sigma(WX%20+%20b)" alt="Encoder Formula" />
+    </li>
+    <li><strong>Decoder:</strong> Reconstructs input <em>X</em> from <em>Z</em>:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\hat{X}%20=%20f_{\text{dec}}(Z)%20=%20\sigma(W'Z%20+%20b')" alt="Decoder Formula" />
+    </li>
+    <li><strong>Loss Function:</strong> Measures reconstruction error using Mean Squared Error (MSE):
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}(X,%20\hat{X})%20=%20\frac{1}{n}%20\sum_{i=1}^n%20(X_i%20-%20\hat{X}_i)^2" alt="Reconstruction Loss Formula" />
+    </li>
+</ul>
+<p><strong>Variational Autoencoders (VAEs):</strong> Extend autoencoders by introducing probabilistic latent variables:</p>
+<ul>
+    <li><strong>Latent Space Distribution:</strong> VAEs assume latent variables follow a Gaussian distribution:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?Z%20\sim%20\mathcal{N}(\mu,%20\sigma^2)" alt="Latent Space Gaussian" />
+    </li>
+    <li><strong>Loss Function:</strong> Combines reconstruction loss and KL-divergence:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}%20=%20\mathbb{E}_{q(Z|X)}[\log%20p(X|Z)]%20-%20\text{KL}(q(Z|X)%20||%20p(Z))" alt="VAE Loss Function" />
+    </li>
+</ul>
+<p><strong>KL-Divergence:</strong> Regularizes the latent space:
+    <br>
+    <img src="https://latex.codecogs.com/svg.latex?\text{KL}(q(Z|X)%20||%20p(Z))%20=%20\frac{1}{2}%20\sum_{i=1}^d%20\left(%20\log%20\frac{\sigma_i^2}{\sigma_0^2}%20+%20\frac{\sigma_0^2%20+%20(\mu_i%20-%20\mu_0)^2}{\sigma_i^2}%20-%201%20\right)" alt="KL Divergence Formula" />
+</p>
+
+				<!-- Adam Optimizer Section -->
+				<h2 id="adam-optimizer">Adam Optimizer</h2>
+				<p><strong>Definition:</strong> Adam combines momentum and RMSProp benefits, adapting learning rates for individual parameters.</p>
+				<p><strong>Update Rule:</strong> <img src="https://latex.codecogs.com/svg.latex?\theta_t%20=%20\theta_{t-1}%20-%20\frac{\eta}{\sqrt{\hat{v}_t}%20+%20\epsilon}%20\hat{m}_t" alt="Adam Equation" /></p>
+				<pre><code>
+# Example (Using PyTorch)
+import torch
+
+model = torch.nn.Linear(10, 1)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+data = torch.rand(10)
+target = torch.rand(1)
+criterion = torch.nn.MSELoss()
+
+output = model(data)
+loss = criterion(output, target)
+loss.backward()
+optimizer.step()
+
+print(list(model.parameters()))
+				</code></pre>
+
+                 Adam (Adaptive Moment Estimation) is a widely used optimization algorithm in deep learning. It combines the benefits of momentum-based optimization and adaptive learning rates.</p>
+
+<p><strong>How Adam Works:</strong></p>
+<ul>
+    <li><strong>Step 1: Compute Gradients</strong>:
+        <br>
+        At each iteration \( t \), compute the gradient of the loss function \( \mathcal{L} \) with respect to model parameters \( \theta_t \):
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?g_t%20=%20\nabla_{\theta_t}%20\mathcal{L}(\theta_t)" alt="Gradient Formula" />
+    </li>
+    <li><strong>Step 2: Update Moving Averages</strong>:
+        <br>
+        Adam maintains exponentially decaying moving averages of:
+        <ol>
+            <li><strong>First moment (mean):</strong> \( m_t \)
+                <br>
+                <img src="https://latex.codecogs.com/svg.latex?m_t%20=%20\beta_1%20m_{t-1}%20+%20(1-\beta_1)%20g_t" alt="First Moment Update Formula" />
+            </li>
+            <li><strong>Second moment (uncentered variance):</strong> \( v_t \)
+                <br>
+                <img src="https://latex.codecogs.com/svg.latex?v_t%20=%20\beta_2%20v_{t-1}%20+%20(1-\beta_2)%20g_t^2" alt="Second Moment Update Formula" />
+            </li>
+        </ol>
+        where \( \beta_1 \) and \( \beta_2 \) are hyperparameters (typically \( \beta_1 = 0.9 \), \( \beta_2 = 0.999 \)).
+    </li>
+    <li><strong>Step 3: Bias Correction</strong>:
+        <br>
+        Correct the bias introduced in \( m_t \) and \( v_t \) during the early iterations:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\hat{m}_t%20=%20\frac{m_t}{1-\beta_1^t},%20\quad%20\hat{v}_t%20=%20\frac{v_t}{1-\beta_2^t}" alt="Bias Correction Formula" />
+    </li>
+    <li><strong>Step 4: Update Parameters</strong>:
+        <br>
+        Update the parameters \( \theta_t \) using the following rule:
+        <br>
+        <img src="https://latex.codecogs.com/svg.latex?\theta_t%20=%20\theta_{t-1}%20-%20\frac{\eta}{\sqrt{\hat{v}_t}%20+%20\epsilon}%20\hat{m}_t" alt="Adam Update Rule" />
+        <br>
+        Here, \( \eta \) is the learning rate and \( \epsilon \) is a small constant (e.g., \( 10^{-8} \)) to prevent division by zero.
+    </li>
+</ul>
+
+<p><strong>Advantages of Adam:</strong></p>
+<ul>
+    <li>Combines momentum and adaptive learning rates.</li>
+    <li>Efficient and well-suited for large datasets and high-dimensional parameter spaces.</li>
+    <li>Works well without requiring extensive hyperparameter tuning.</li>
+</ul>
+
+                <h1><a href="#">Activation Functions</a></h1>
+				<h2>1. Sigmoid</h2>
+				<p>The sigmoid function maps input values to a range between 0 and 1, making it useful for binary classification.</p>
+				<p><img src="https://latex.codecogs.com/svg.latex?g(z)%20=%20\frac{1}{1%20+%20e^{-z}}" alt="Sigmoid Function" /></p>
+				<pre><code>
+# Sigmoid Function in Python
+import numpy as np
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+print(sigmoid(np.array([-1, 0, 1, 2])))
+				</code></pre>
+
+				<h2>2. Tanh</h2>
+				<p>The tanh function is zero-centered and maps input to the range [-1, 1].</p>
+				<p><img src="https://latex.codecogs.com/svg.latex?g(z)%20=%20\tanh(z)" alt="Tanh Function" /></p>
+				<pre><code>
+# Tanh Function in Python
+def tanh(x):
+    return np.tanh(x)
+
+print(tanh(np.array([-1, 0, 1, 2])))
+				</code></pre>
+
+				<h2>3. ReLU</h2>
+				<p>ReLU (Rectified Linear Unit) outputs 0 for negative inputs and the input itself for positive inputs, making it computationally efficient and widely used.</p>
+				<p><img src="https://latex.codecogs.com/svg.latex?g(z)%20=%20\max(0,%20z)" alt="ReLU Function" /></p>
+				<pre><code>
+# ReLU Function in Python
+def relu(x):
+    return np.maximum(0, x)
+
+print(relu(np.array([-1, 0, 1, 2])))
+				</code></pre>
+
+				<h2>4. Leaky ReLU</h2>
+				<p>Leaky ReLU addresses the "dying ReLU" problem by allowing a small slope for negative inputs.</p>
+				<p><img src="https://latex.codecogs.com/svg.latex?g(z)%20=%20\begin{cases}%20z%20&%20z%20>%200\\%20\alpha%20z%20&%20z%20\leq%200\end{cases}" alt="Leaky ReLU Function" /></p>
+				<pre><code>
+# Leaky ReLU in PyTorch
+import torch.nn.functional as F
+x = torch.tensor([-1.0, 0.0, 1.0, 2.0])
+leaky_relu = F.leaky_relu(x, negative_slope=0.1)
+print(leaky_relu)
+				</code></pre>
+
+				<h2>5. Softmax</h2>
+				<p>The softmax function is used in multi-class classification to compute probabilities for each class.</p>
+				<p><img src="https://latex.codecogs.com/svg.latex?g(z_i)%20=%20\frac{e^{z_i}}{\sum_{j}e^{z_j}}" alt="Softmax Function" /></p>
+				<pre><code>
+# Softmax Function in Python
+def softmax(x):
+    exp_x = np.exp(x - np.max(x))
+    return exp_x / exp_x.sum(axis=0)
+
+print(softmax(np.array([1, 2, 3])))
+				</code></pre>
+			</article>
+
+		</div>
+
+		<!-- Footer -->
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+			<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a
+					href="http://unsplash.com">Unsplash</a>.</p>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
