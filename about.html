@@ -11,6 +11,28 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<style>
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .image-container img {
+            max-width: 48%;
+            height: auto;
+            aspect-ratio: 1 / 1; /* Ensures a square aspect ratio */
+            object-fit: cover; /* Keeps images looking good */
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 768px) {
+            .image-container img {
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body class="single is-preload">
@@ -50,77 +72,120 @@
 						<h2><a href="#">About Me</a></h2>
 					</div>
 				</header>
-				<p>I&#39;m a master&#39;s student at ECE, University of Michigan-Ann Arbor. My specialisation is in
-					Signal and Image Processing and Machine Learning. My research interests include medical imaging,
-					medical signal processing, computer vision, precision medicine and inverse problems. </p>
+				<div>
+						<h3>A Journey of Curiosity and Innovation<h3>
+				</div>
+				<p>
+					<h5>Curious Beginnings</h5>
+					Growing up in India, I was surrounded by diverse cultures and rich traditions. My curiosity about the world began early, sparked by childhood observations and a love for solving puzzles. One defining moment came in high school when I noticed that my cousins and I often fell sick after visiting my grandparents. With the guidance of my biology teacher, I collected water samples, performed tests, and discovered high levels of E. coli in the local water supply. This discovery led to a community awareness campaign promoting water purifiers, instilling in me a passion for tackling real-world problems.
+				</p>
+				<p>
+					<h5>Diving into Engineering</h5>
+					Driven by my interest in problem-solving, I pursued a B.Tech in Electronics and Communication Engineering at PES University. During my studies, I explored signal processing and machine learning, undertaking impactful projects like an IoT-enabled multimodal data fusion system for sensor reliability and compression. These experiences shaped my fascination with integrating diverse data sources to solve complex problems.
+				</p>
+				
+				<p>
+					<h5>Aiding Frontline Workers During COVID-19</h5>
+					The pandemic marked a turning point in my journey. As an IEEE intern, I remodeled CheXNet to detect COVID-19 from X-rays and CT scans, fine-tuning it to reduce false negatives. Seeing my model adopted by a radiology lab to support frontline workers filled me with pride and deepened my interest in biomedical signal processing. However, the challenges of “black box” AI models pushed me to seek deeper insights and more robust solutions.
+				</p>
+				
+				<p>
+					<h5>From Industry to Academia</h5>
+					After completing my undergraduate degree, I worked at Amazon, where I honed my skills in software engineering and cloud technologies. I developed scalable full-stack applications, shadow testing frameworks, and CI/CD pipelines. While I enjoyed the technical challenges, my passion to learn more and to not leave things unknown led me back to academia, where I could merge my skills to address pressing healthcare problems.
+				</p>
+				<p>
+					<h5>Innovating at Michigan</h5>
+					Now pursuing a master’s in Electrical and Computer Engineering at the University of Michigan, I focus on combining signal processing, machine learning, and precision medicine. My research includes modeling Alzheimer's progression using a Conditional Mixture of Gaussians VAE, building probabilistic frameworks for neural and behavioral data, and enhancing the biological plausibility of generative models. Each project deepens my understanding and motivates me to create solutions that matter.
+				</p>
+				<p>
+					<div class="image-container">
+						<img src="images/lab.png" alt="" /><img src="images/Presenting.png" alt="" />
+					</div>
+					
+				</p>
+				<br/>
+				<br/>
+<h2> Resume </h2>
+<p>I&#39;m a master&#39;s student at ECE, University of Michigan-Ann Arbor, specializing in Signal and Image Processing and Machine Learning. My research interests include medical imaging, medical signal processing, computer vision, precision medicine, and inverse problems.</p>
+
+<h3 id="education-">Education:</h3>
+<p><strong>Master of Science in Electrical and Computer Engineering</strong>, University of Michigan-Ann Arbor <em>(Aug 2023 - Apr 2025)</em></p>
+<ul>
+    <li>Courses: Machine Learning, Computer Vision, Parallel Computing, Random Variables, Matrix Methods for Signal Processing.</li>
+    <li>Projects:
+        <ul>
+            <li>Developed a video QA system using CLIP and LLaMA for multimodal reasoning.</li>
+            <li>Optimized ResNet-150 pipeline parallelization for training on multiple GPUs using GPipe.</li>
+            <li>Fine-tuned Stable Diffusion to generate short photorealistic video clips.</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>Bachelor of Technology in Electronics and Communication Engineering</strong>, PES University, India <em>(Aug 2017 - May 2021)</em></p>
+<ul>
+    <li>Minor in Computer Science and Engineering.</li>
+    <li>Developed a COVID-19 detection model with CheXNet, adopted by a radiology lab for clinical diagnostics.</li>
+    <li>Built an IoT-enabled multimodal data fusion system using Regular Vine Copulas (R-Vine).</li>
+</ul>
+
+<h3 id="research-experience-">Research Experience:</h3>
+<p><strong>Graduate Research Assistant, Draelos Lab, University of Michigan</strong> <em>(May 2024 - Present)</em></p>
+<ul>
+    <li>Developed a Conditional Mixture of Gaussians VAE (CGMMVAE) to learn low-dimensional latent representations of neural spiking data.</li>
+    <li>Designed a probabilistic trajectory optimization framework for modeling Alzheimer’s disease progression.</li>
+    <li>Applied constrained probabilistic optimization to ensure biologically plausible transitions between states.</li>
+    <li>Designed scalable training workflows on HPC clusters using MPI for improved efficiency.</li>
+</ul>
+
+<p><strong>Publications:</strong> <a href="https://scholar.google.com/citations?hl=en&amp;user=wjTq3dgAAAAJ">Google Scholar</a></p>
+<ul>
+    <li><em>Pneumonia and Covid Detection from Chest X-Ray</em></li>
+    <li><em>Multimodal Data Fusion using R-Vine Copula</em></li>
+    <li><em>Acute Infarct Detection in Brain MRI</em></li>
+</ul>
+
+<h3 id="industry-experience-">Industry Experience:</h3>
+<p><strong>Software Development Engineer and Test, Amazon, India</strong> <em>(Aug 2021 - Aug 2023)</em></p>
+<ul>
+    <li>Developed a full-stack dashboard to visualize system health, test case metrics, and real-time data using AWS services.</li>
+    <li>Built a shadow testing framework using Docker and Kubernetes to improve test efficiency.</li>
+    <li>Enhanced automation pipelines and CI/CD workflows for seamless deployment.</li>
+</ul>
+
+<p><strong>Part-Time Assistant, Center for Entrepreneurship, University of Michigan</strong> <em>(Oct 2023 - Present)</em></p>
+<ul>
+    <li>Building end-to-end automation pipelines for economic impact analysis using web scraping and API integrations.</li>
+    <li>Developed a framework for real-time insights using NLP-based analytics.</li>
+</ul>
+
+<p><strong>Summer Intern, Technovation Center, Wipro Ltd</strong></p>
+<ul>
+    <li>Developed a Web AR application for virtual clothing try-on, enabling accurate size estimation.</li>
+</ul>
+
+<h3 id="skills-">Skills:</h3>
+<ul>
+    <li><strong>Programming:</strong> Python, C++, Java, MATLAB, SQL</li>
+    <li><strong>Cloud & DevOps:</strong> AWS (Lambda, EC2, DynamoDB), Docker, Kubernetes</li>
+    <li><strong>Data Tools:</strong> Tableau, Pandas, NumPy</li>
+    <li><strong>Distributed Systems:</strong> Spark, Open MPI, Parallel Processing</li>
+    <li><strong>Machine Learning & AI:</strong> NLP, Computer Vision, Deep Learning</li>
+</ul>
+
+<h3 id="awards-">Awards:</h3>
+<ul>
+    <li>CNR Rao Scholarship Award for academic excellence and contributions to research in technology.</li>
+    <li>Best Women Coders - SRM Hackathon for developing a Maps application for vehicle navigation on Indian roads.</li>
+</ul>
+<h3>Links:<h3>
 				<ul>
 					<li><a href="https://scholar.google.com/citations?hl=en&amp;user=vSz9WAIAAAAJ">Google Scholar</a>
 					</li>
 				</ul>
-				<h1 id="resume">Resume</h1>
-				<h3 id="education-">Education:</h3>
-				<p>Bachelor of Technology in Electronics and Communication Engineering, PES University, India, with
-					specialisation in Communications. Minor degree in Computer Science and Engineering, PES Univesity,
-					India. <em>(Aug 2017 - May 2021)</em></p>
-				<h3 id="research-experience-">Research Experience:</h3>
-				<p>Publications: <a href="https://scholar.google.com/citations?hl=en&amp;user=vSz9WAIAAAAJ">Google
-						Scholar</a>
-					<em>Pneumonia and Covid Detection from Chest X-Ray</em>
-				</p>
-				<ol>
-					<li>Remodelled the already existing CheXNET to give the probability of a lung X-ray being normal,
-						pneumonic or other lung diseases. </li>
-					<li>Performed segmentation on the pre-processed images using UNET.</li>
-					<li>Fine-tuning the model to reduce false negatives as a radiology lab in Bangalore adopted this
-						model to aid the front-line workers during the pandemic. </li>
-				</ol>
-				<p><em>Multimodal Data Fusion using R-Vine Copula</em></p>
-				<ol>
-					<li>Formulated an architectural model that provided optimal dimensionality reduction using
-						Pearson&#39;s coefficient, Predictive Power Score for feature selection, and R-Vine copula for
-						fusion.</li>
-					<li>To obtain a generic architectural design, I analysed various tree estimation and detection
-						techniques that enable the model to organise the optimal tree structure and pick the copula
-						functions that best model complex dependencies of the input data for fusion.</li>
-					<li>To validate the effectiveness of our representation and fusion framework, we conducted
-						experiments using STISEN: Human Activity Recognition dataset and Transport Mode Detection
-						dataset. The outputs obtained from this model were then fed to a standard classification model
-						to compare against the previous algorithms, with our model proving superior.</li>
-				</ol>
-				<p><em>Acute Infarct Detection in Brain MRI</em></p>
-				<ol>
-					<li>Worked with a partner to build a supervised learning CNN that predicts the tumor location in
-						brain MRI with very low input data availability.</li>
-					<li>Worked with a dataset of 50 brain MRI images and corresponding infarct locations. <a
-							href="https://github.com/yogya-ch/Acute_infarct">link to code</a></li>
-				</ol>
-				<h3 id="industry-experience-">Industry Experience:</h3>
-				<p><em>Software Development Engineer and Test @ Amazon India</em> <em>(Aug 2021- Aug 2023)</em></p>
-				<ol>
-					<li>Discussed with various teams and members to gather the needs and requirement for testing
-						frameworks.
-						Then, worked on designing and developing a test framework on AWS to support shadow testing.</li>
-					<li>Developed a dashboard web application to show consolidated realtime report of projects, tasks
-						and automation results for Amazon Prime Team.</li>
-					<li>Designed DB schema and implementing backend Lambda functions to support the development of a
-						Dashboard Web Application to track operational excellence and automation metrics.</li>
-				</ol>
-				<p><em>Summer Intern @Technovation Center, Wipro Ltd</em></p>
-				<ol>
-					<li>Intern at the R&amp;D - Technovation Center of Wipro</li>
-					<li>Created a Web AR application to allow customers try out best fit cloths on personalized 3D model
-						without
-						out actually visiting the store or install new apps. (<a
-							href="https://yogyach.github.io/webAR/">Some testing snippets</a>)</li>
-				</ol>
 
 
 				<footer>
-					<ul class="stats">
-						<li><a href="#">General</a></li>
-						<li><a href="#" class="icon solid fa-heart">28</a></li>
-						<li><a href="#" class="icon solid fa-comment">128</a></li>
-					</ul>
+					
 				</footer>
 			</article>
 
