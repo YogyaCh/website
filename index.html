@@ -1,169 +1,171 @@
-<!DOCTYPE HTML>
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Yogya's Website</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yogya Chukkapalli</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Yogya Chukkapalli</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#reading">Reading</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  <section class="hero">
+    <h1>Hi, I'm Yogya 👋</h1>
+    <p>Engineer. ML tinkerer. System designer. Explorer of intelligent systems.</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="button">View Projects</a>
+      <a href="resume.pdf" class="button-outline" target="_blank">Download Resume</a>
+    </div>
+  </section>
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">Yogya Chukkapalli</a></h1>
-						<nav class="links">
-							<ul>
-								<li><a href="single.html">Blog</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="projects.html">Projects</a></li>
-							</ul>
-						</nav>
-						<nav class="main">
-							<ul>
-								<li class="search">
-									<a class="fa-search" href="#search">Search</a>
-									<form id="search" method="get" action="#">
-										<input type="text" name="query" placeholder="Search" />
-									</form>
-								</li>
-							</ul>
-						</nav>
-					</header>
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>I craft intelligent, scalable systems that bring machine learning ideas to life. From deploying ML pipelines to building generative AI tools, I blend creativity and engineering to solve real problems.</p>
+    <p>I believe in picking the right tools, learning fast, and crafting thoughtful solutions. I care about making things that not only work — but last.</p>
+  </section>
 
+  <section id="experience" class="section">
+  <h2>Experience</h2>
+  <div class="timeline">
 
-				<!-- Main -->
-					<div id="main">
+    <div class="timeline-item">
+      <span class="timeline-date">Aug 2021 - Aug 2023</span>
+      <h3>Amazon · Software Development Engineer in Test</h3>
+      <p>Worked on distributed systems and automation tools to support global fulfillment infrastructure:</p>
+      <ul>
+        <li><strong>System Health and Metrics Dashboard:</strong> Built and maintained a full-stack real-time dashboard with interactive UI for system health, test coverage, and ticket monitoring, reducing pipeline debug time by 25%.</li>
+        <li><strong>Shadow Testing Framework:</strong> Implemented a live shadow testing system using AWS Kinesis and NoSQL to mirror production traffic and validate new service behavior. Improved rollout safety and reduced latency incidents by 30%.</li>
+        <li><strong>Service Support:</strong> Owned legacy test systems post-reorg; maintained CI/CD pipelines, integrated approval flows and alerts, reducing ticket resolution overhead by 35%.</li>
+        <li><strong>Leadership:</strong> Mentored new hires and led “Samurai” internal knowledge exchange sessions. Served as on-call engineer.</li>
+      </ul>
+    </div>
 
-						<!-- Post -->
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="blog/mlRevisionSeries.html">Machine Learning Revision</a></h2>
-										<p>Series of blogs to revise ML Basics</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2025-01-30">Jan 30, 2025</time>
-										<a href="#" class="author"><span class="name">Yogya</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<a href="blog/mlRevisionSeries.html" class="image featured"><img src="images/mlRevision.png" alt="" /></a>
-								<p>This series is designed to help you revisit and understand key Machine Learning concepts in an organized and structured manner. Each blog post covers few topics, starting alphabetically.</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="blog/mlRevisionSeries.html" class="button large">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">2</a></li>
-									</ul>
-								</footer>
-							</article>
-							<article class="post">
-								<header>
-									<div class="title">
-										<h2><a href="blog/parallelComputingBasics.html">Understanding Parallel Computing Basics</a></h2>
-										<p>Part 1 of Parallel Computing Series</p>
-									</div>
-									<div class="meta">
-										<time class="published" datetime="2024-09-04">Sep 4, 2024</time>
-										<a href="#" class="author"><span class="name">Yogya</span><img src="images/avatar.jpg" alt="" /></a>
-									</div>
-								</header>
-								<a href="blog/parallelComputingBasics.html" class="image featured"><img src="images/IBM_Blue_Gene_P_supercomputer.jpg" alt="" /></a>
-								<p>In this blog, I’ll break down core concepts—covering Amdahl’s Law, ghost cells, stencil algorithms, MPI, and more—keeping it fun and relatable!</p>
-								<footer>
-									<ul class="actions">
-										<li><a href="blog/parallelComputingBasics.html" class="button large">Continue Reading</a></li>
-									</ul>
-									<ul class="stats">
-										<li><a href="#">General</a></li>
-										<li><a href="#" class="icon solid fa-heart">2</a></li>
-									</ul>
-								</footer>
-							</article>
-					</div>
+    <div class="timeline-item">
+      <span class="timeline-date">Apr 2025 - May 2025</span>
+      <h3>Stealth AI Startup · Founding Engineer</h3>
+      <p>Built a GenAI-powered medical report analyzer (ClinIQ) to help doctors extract insights from lab reports:</p>
+      <ul>
+        <li>Designed and deployed a RAG-based system using OCR (Tesseract), LangChain, and a local quantized LLaMA model served via Ollama.</li>
+        <li>Built an asynchronous inference pipeline with Flask + Celery + Redis for concurrent user support.</li>
+        <li>Production-ready version featured modular components, test scripts, logging, and future hooks for drift monitoring.</li>
+        <li>A simplified version is publicly available on GitHub under <a href="https://github.com/YogyaCh/ClinIQ" target="_blank">ClinIQ</a>.</li>
+      </ul>
+    </div>
 
-				<!-- Sidebar -->
-					<section id="sidebar">
+    <div class="timeline-item">
+      <span class="timeline-date">Nov 2023 - Apr 2025</span>
+      <h3>University of Michigan CFE · Data Analyst</h3>
+      <p>Analyzed the long-term economic and innovation impact of the NSF iCorps program:</p>
+      <ul>
+        <li>Built an ETL pipeline to gather startup data from SBIR, USPTO, and open grant APIs using name and time filters.</li>
+        <li>Applied transformer-based embedding matching to improve linkage accuracy between people, patents, and startups.</li>
+        <li>Designed dashboards using Tableau to surface insights on funding trends, founder affiliations, and geographic innovation hubs.</li>
+      </ul>
+    </div>
 
-						<!-- Intro -->
-							<section id="intro">
-								<a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
-								<header>
-									<h2>Welcome to my website</h2>
-									<p>Below are links to some interesting articles I've come across</a></p>
-								</header>
-							</section>
+    <div class="timeline-item">
+      <span class="timeline-date">May 2024 - Present</span>
+      <h3>Draelos Lab, Michigan Medicine · Research Affiliate</h3>
+      <p>Led multiple research initiatives involving generative modeling and neural time-series analysis:</p>
+      <ul>
+        <li><strong>BCI and Neural Time Series:</strong> Designed a Conditional GMM-VAE to model latent representations of neural spiking data, clustering by behavioral states for brain-computer interface applications.</li>
+        <li><strong>Alzheimer’s Resilience:</strong> Developed a probabilistic model on 14 mouse strains with varied gene signatures to understand progression and resistance in Alzheimer’s disease.</li>
+        <li><strong>Latent Trajectory Planning:</strong> Built a constrained optimization framework over the latent space to simulate biologically plausible transitions from susceptible to resilient cognitive states, using CFM scores as targets.</li>
+      </ul>
+    </div>
 
-						<!-- Posts List -->
-							<section>
-								<ul class="posts">
-									<li>
-										<article>
-											<header>
-												<h3><a href="https://hbr.org/2004/10/blue-ocean-strategy">Blue Ocean Strategy</a></h3>
-											</header>
-											<a href="https://hbr.org/2004/10/blue-ocean-strategy" class="image"><img src="images/pic08.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="https://optuna.org">Optuna: Hyperparameter optimisation framework</a></h3>
-											</header>
-											<a href="https://optuna.org" class="image"><img src="images/pic09.jpg" alt="" /></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="https://huyenchip.com/2024/03/14/ai-oss.html">Some analysis on open source AI ecosystem</a></h3>
-											</header>
-											<a href="https://huyenchip.com/2024/03/14/ai-oss.html" class="image"><img src="images/pic10.jpg" alt="" /></a>
-										</article>
-									</li>
-								</ul>
-							</section>
+  </div>
+</section>
 
-						<!-- About -->
-							<section class="blurb">
-								<h2>About</h2>
-								<p>I'm a learning enthusuast, in pursuit of realising new things. Love listenig to people, enjoy talking too.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Learn More</a></li>
-								</ul>
-							</section>
+  <section id="projects" class="section">
+  <h2>Projects</h2>
+  <div class="project-grid">
 
-						<!-- Footer -->
-							<section id="footer">
-								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
-									<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-								<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
-							</section>
+    <div class="project-card">
+      <h3>ClinIQ: GenAI for Lab Reports</h3>
+      <p>Built and deployed a full-stack tool to analyze medical lab reports using OCR, LangChain, and a local LLaMA model. Supports RAG-based summarization, clinical Q&A, and PDF ingestion. Lightweight public version is available.</p>
+      <a href="https://github.com/YogyaCh/ClinIQ" target="_blank">GitHub ↗</a>
+    </div>
 
-					</section>
+    <div class="project-card">
+      <h3>Latent Trajectory Planner (GMM-VAE)</h3>
+      <p>Designed a trajectory generation method in VAE latent space using Conditional Gaussian Mixtures to model transitions between behavioral states. Applied to Alzheimer’s resilience and perturbation simulations.</p>
+      <a href="#">DirectedStudy_Fall2024_Paper.pdf</a>
+    </div>
 
-			</div>
+    <div class="project-card">
+      <h3>Advancing Long Sequence VideoQA</h3>
+      <p>Developed a Glance-based memory-aware QA system to improve long-form video understanding. Used a Flipped-VQA formulation to challenge LLM bias toward text-only inputs.</p>
+      <a href="https://github.com/calcumich/flipped-gf" target="_blank">GitHub ↗</a>
+    </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <div class="project-card">
+      <h3>Advanced Computer Vision Showcase</h3>
+      <p>Included experiments with ViTs (attention maps, register tokens), diffusion models for photorealistic video generation, and debiased pseudo-label classification using CLIP and logit adjustment.</p>
+      <a href="#">Read More ↗</a>
+    </div>
 
-	</body>
+    <div class="project-card">
+      <h3>Parallel Computing & GPU Optimization</h3>
+      <p>Built CUDA and MPI programs for stencil, max-interval search; optimized kernels for shared memory. Benchmarked performance on HPC clusters. Explored PyTorch DDP for deep learning scalability.</p>
+      <a href="blog/parallelComputingBasics.html" target="_blank">Explore ↗</a>
+    </div>
+
+    <div class="project-card">
+      <h3>IoT Multimodal Data Fusion</h3>
+      <p>Co-authored two IEEE papers on feature fusion and copula theory for sensor data reduction. Developed a 40% dimensionality reduction model, improving classification accuracy and latency.</p>
+      <a href="https://ieeexplore.ieee.org/document/12345678" target="_blank">IEEE Paper ↗</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Intal: Arbitrary-Length Integer Arithmetic Library</h3>
+      <p>Built a C library to perform arithmetic operations on non-negative integers of arbitrary length. Focused on algorithm efficiency and correctness in academic settings.</p>
+      <a href="#">GitHub ↗</a>
+    </div>
+
+    <div class="project-card">
+      <h3>ML to MLE: My Transition Blog</h3>
+      <p>A blog series reflecting on the journey from research to industry-focused machine learning engineering. Covers system design, shadow testing, and deployment lessons.</p>
+      <a href="https://mltomle.wordpress.com" target="_blank">Read Blog ↗</a>
+    </div>
+
+  </div>
+</section>
+
+  <section id="reading" class="section">
+    <h2>Suggested Reading</h2>
+    <div class="reading-list">
+      <ul>
+        <li><a href="https://huyenchip.com/2024/03/14/ai-oss.html" target="_blank">Some Analysis on Open Source AI Ecosystem</a></li>
+        <li><a href="https://hbr.org/2004/10/blue-ocean-strategy" target="_blank">Blue Ocean Strategy (HBR)</a></li>
+        <li><a href="https://optuna.org" target="_blank">Optuna: Hyperparameter Optimization</a></li>
+        <li><a href="https://sebastianraschka.com/blog/2024/build-llms.html" target="_blank">Building LLMs from Scratch by Sebastian Raschka</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Get in Touch</h2>
+    <p>Reach out via <a href="mailto:yogya@example.com">email</a> or find me on the platforms below.</p>
+    <div class="social-icons">
+      <a href="https://github.com/YogyaCh" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/yogya-chukkapalli/" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Yogya Chukkapalli · Crafted with care</p>
+  </footer>
+</body>
 </html>
